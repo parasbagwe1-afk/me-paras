@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Paras Bagwe — Portfolio (Racing Theme)</title>
+  <meta name="description" content="Portfolio of Paras Bagwe — programming, projects, and passion for automobiles and tech." />
+  <style>
+    /* Racing / dark theme */
+    :root{
+      --bg:#050609; --card:#0b0f12; --muted:#9aa4b2; --accent:#ff3b30; --accent-2:#ff8a00; --glass:rgba(255,255,255,0.03); --max-w:1200px; --radius:12px;
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100%;background:radial-gradient(circle at 10% 10%, #07121a 0%, #020305 60%), linear-gradient(180deg,#020305 0%, #050609 100%);color:#e7eef8}
+    a{color:inherit}
+    .container{max-width:var(--max-w);margin:28px auto;padding:22px}
+
+    /* Top nav */
+    header{position:fixed;left:0;right:0;top:14px;z-index:80;display:flex;justify-content:center}
+    .nav{display:flex;gap:12px;align-items:center;padding:10px 16px;border-radius:999px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));backdrop-filter:blur(6px);box-shadow:0 8px 26px rgba(0,0,0,0.6)}
+    .brand{font-weight:800;letter-spacing:0.3px;color:var(--accent)}
+    nav a{padding:8px 12px;border-radius:10px;text-decoration:none;color:var(--muted);font-weight:700}
+    nav a.active{background:rgba(255,255,255,0.03);color:white}
+
+    /* Main layout - SPA pages */
+    .stage{padding-top:110px}
+    .page{display:none;opacity:0;transform:translateY(14px) scale(0.995);transition:all 520ms cubic-bezier(.2,.9,.25,1)}
+    .page.active{display:block;opacity:1;transform:none}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center}
+    .eyebrow{color:var(--accent);font-weight:800}
+    h1{font-size:clamp(28px,4vw,44px);margin:6px 0}
+    .lead{color:var(--muted);max-width:640px}
+    .btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;padding:10px 14px;border-radius:10px;font-weight:800;color:white;cursor:pointer}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.02)}
+    .avatar{height:320px;border-radius:10px;overflow:hidden;background:linear-gradient(120deg,#111 0%, #0b2436 100%);display:flex;align-items:center;justify-content:center;font-weight:800}
+
+    /* Projects grid and list */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+
+    /* Racing decorative header */
+    .racing-strip{height:8px;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:999px;margin-top:12px}
+
+    /* Music controls */
+    .music{position:fixed;left:18px;bottom:18px;background:rgba(0,0,0,0.45);backdrop-filter:blur(6px);padding:10px;border-radius:12px;display:flex;gap:8px;align-items:center}
+    .music button{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px;border-radius:8px;color:var(--muted);cursor:pointer}
+
+    /* Mini animations */
+    .pulse{animation:pulse 2.2s infinite ease-in-out}
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
+
+    /* Page transitions for cards */
+    .fade-in{opacity:0;transform:translateY(12px);transition:all 480ms ease-out}
+    .fade-in.show{opacity:1;transform:none}
+
+    /* Footer */
+    footer{margin-top:28px;text-align:center;color:var(--muted);padding:22px}
+
+    @media (max-width:880px){.hero{grid-template-columns:1fr}.avatar{height:220px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav container">
+      <div class="brand">Paras Bagwe</div>
+      <nav style="margin-left:12px;display:flex;gap:8px">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#blog" class="nav-link">Blog</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container stage">
+
+    <!-- HOME -->
+    <section id="home" class="page active">
+      <div class="hero">
+        <div>
+          <div class="eyebrow">Tech • Automobiles • Exploration</div>
+          <h1>Hi — I'm <span style="color:var(--accent)">Paras Bagwe</span></h1>
+          <p class="lead">I love driving automobiles, exploring new places, and learning about new technologies. I program in C and C++ and I enjoy building projects that teach me something new.</p>
+          <div style="margin-top:18px;display:flex;gap:12px">
+            <button class="btn" onclick="navigate('#projects')">See projects</button>
+            <button class="btn" onclick="navigate('#about')" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)">More about me</button>
+          </div>
+          <div class="racing-strip" aria-hidden="true"></div>
+        </div>
+
+        <aside class="card avatar">
+          <!-- Replace with your image: <img src="paras.jpg" alt="Paras Bagwe" style="width:100%;height:100%;object-fit:cover"> -->
+          YOUR PHOTO (drop paras.jpg in same folder)
+        </aside>
+      </div>
+
+      <div style="height:18px"></div>
+      <div class="card fade-in" style="padding:14px;display:flex;gap:14px;align-items:center">
+        <div style="flex:1">
+          <strong>Quick stats</strong>
+          <div style="color:var(--muted);margin-top:6px">Languages: C, C++ • Interests: Automobiles, Tech, Projects</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-weight:800;color:var(--accent)">Available for collaboration</div>
+          <div style="color:var(--muted);font-size:13px">Contact below</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page">
+      <div class="card fade-in">
+        <h2>About me</h2>
+        <p style="color:var(--muted)">I am Paras Bagwe. I love driving automobiles, exploring new things, and learning about emerging technologies. I enjoy programming in C and C++ and plan to build more projects to grow my skills.</p>
+        <h3 style="margin-top:12px">Hobbies</h3>
+        <ul style="color:var(--muted)">
+          <li>Driving & exploring new places</li>
+          <li>Learning new technologies</li>
+          <li>Building small projects</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="page">
+      <h2>Projects & Goals</h2>
+      <div class="grid">
+        <div class="card fade-in">
+          <h4>Project Idea: Vehicle Tracker</h4>
+          <p style="color:var(--muted)">A small C/C++ program or embedded project that logs trips and basic stats.</p>
+        </div>
+        <div class="card fade-in">
+          <h4>Goal: Learn Python & Embedded</h4>
+          <p style="color:var(--muted)">Expand skillset to Python and microcontrollers for practical automotive projects.</p>
+        </div>
+        <div class="card fade-in">
+          <h4>Future: Personal Website + Portfolio</h4>
+          <p style="color:var(--muted)">Convert this site into a multi-page hosted portfolio showcasing projects and media.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG (simple CMS-like) -->
+    <section id="blog" class="page">
+      <div class="card fade-in">
+        <h2>Notes / Blog</h2>
+        <p style="color:var(--muted)">Short posts about things you learn — this area will be easy to update. Example posts:</p>
+        <ul style="color:var(--muted)">
+          <li>2025-10-01 — How I started learning C++</li>
+          <li>2025-09-12 — My first road-trip notes</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="page">
+      <div class="card fade-in">
+        <h2>Contact</h2>
+        <p style="color:var(--muted)">Want to collaborate? Email me or follow on Instagram.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+          <a href="mailto:youremail@example.com" class="btn">Email</a>
+          <a href="https://instagram.com/yourusername" target="_blank" class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.06)">Instagram</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>© Paras Bagwe • Built with HTML, CSS & JS</footer>
+  </main>
+
+  <!-- Music controls (needs file named f1_theme.mp3 in same folder or paste a link in code) -->
+  <div class="music" aria-hidden="false">
+    <button id="music-toggle">▶ Play F1 Theme</button>
+    <button id="music-mute">Mute</button>
+    <div style="color:var(--muted);font-size:13px;margin-left:8px">Background music (optional)</div>
+  </div>
+
+  <audio id="bg-audio" loop preload="none">
+    <!-- IMPORTANT: Due to copyright you must provide the audio file yourself. Place file 'f1_theme.mp3' (your track or a licensed alternative) in the same folder as the site, or replace the src below with a hosted mp3 URL you have rights to. -->
+    <source src="f1_theme.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // --- Simple SPA hash navigation ---
+    const links = document.querySelectorAll('.nav-link');
+    const pages = document.querySelectorAll('.page');
+    function showPage(id){
+      pages.forEach(p=>{p.classList.remove('active');});
+      const el = document.querySelector(id);
+      if(el){
+        el.classList.add('active');
+        // reveal fade-ins inside
+        setTimeout(()=>{el.querySelectorAll('.fade-in').forEach((f,i)=>setTimeout(()=>f.classList.add('show'), i*120));},80);
+      }
+      links.forEach(a=>a.classList.toggle('active', a.getAttribute('href')===id));
+    }
+    function navigate(hash){location.hash = hash;}
+    window.addEventListener('hashchange', ()=>{showPage(location.hash || '#home');});
+    if(!location.hash) location.hash = '#home'; else showPage(location.hash);
+
+    // set nav active on click
+    links.forEach(l=>l.addEventListener('click', (e)=>{e.preventDefault();navigate(l.getAttribute('href'));}))
+
+    // Music controls
+    const audio = document.getElementById('bg-audio');
+    const btn = document.getElementById('music-toggle');
+    const mute = document.getElementById('music-mute');
+    let isPlaying=false;
+    btn.addEventListener('click', async ()=>{
+      if(!isPlaying){
+        try{await audio.play(); isPlaying=true; btn.textContent='⏸ Pause';}
+        catch(err){alert('Autoplay blocked — click Play again or allow audio.');}
+      } else {audio.pause(); isPlaying=false; btn.textContent='▶ Play F1 Theme';}
+    });
+    mute.addEventListener('click', ()=>{audio.muted = !audio.muted; mute.textContent = audio.muted? 'Unmute':'Mute';});
+
+    // Small decorative animation: floating pulse on brand
+    document.querySelector('.brand').classList.add('pulse');
+
+    // Keyboard shortcut to toggle music (M)
+    window.addEventListener('keydown', (e)=>{ if(e.key.toLowerCase()==='m'){btn.click();}});
+
+    // Accessibility: if no audio file present, hide controls
+    fetch('f1_theme.mp3', {method:'HEAD'}).then(r=>{ if(!r.ok) document.querySelector('.music').style.display='flex'; }).catch(()=>{/* silently allow — user must add file */});
+  </script>
+</body>
+</html>
